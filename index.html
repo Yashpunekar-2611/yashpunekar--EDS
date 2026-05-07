@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yashpunekar – EDS</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #1D9E75;
+    --teal-light: #E1F5EE;
+    --teal-mid: #5DCAA5;
+    --teal-dark: #085041;
+    --blue: #378ADD;
+    --blue-light: #E6F1FB;
+    --blue-dark: #0C447C;
+    --surface: #f8f9fa;
+    --card-bg: #ffffff;
+    --border: #e2e8f0;
+    --border-strong: #cbd5e1;
+    --text-primary: #1a2332;
+    --text-secondary: #4a5568;
+    --text-muted: #718096;
+    --link: #1D9E75;
+    --link-hover: #0F6E56;
+    --check-bg: #1D9E75;
+    --check-border: #0F6E56;
+    --tag-bg: #E1F5EE;
+    --tag-text: #085041;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    --shadow-hover: 0 4px 12px rgba(29,158,117,0.15), 0 8px 32px rgba(0,0,0,0.06);
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── Header ── */
+  header {
+    background: linear-gradient(135deg, #085041 0%, #1D9E75 60%, #5DCAA5 100%);
+    padding: 3rem 1.5rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -30px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .header-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: #d1fae5;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  header p {
+    color: #a7f3d0;
+    font-size: 1rem;
+    max-width: 480px;
+  }
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .progress-bar-wrap {
+    flex: 1;
+    min-width: 160px;
+    height: 6px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 99px;
+  }
+  .progress-label {
+    color: #d1fae5;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* ── Main ── */
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  /* ── Section heading ── */
+  .section-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 2rem 0 0.75rem;
+    padding-left: 2px;
+  }
+
+  /* ── Checklist card ── */
+  .checklist {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+  .checklist-item:last-child {
+    border-bottom: none;
+  }
+  .checklist-item:hover {
+    background: #f0fdf8;
+  }
+
+  /* Checkbox icon */
+  .check-icon {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    background: var(--check-bg);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    box-shadow: 0 1px 4px rgba(29,158,117,0.3);
+  }
+  .check-icon svg {
+    width: 13px; height: 13px;
+    stroke: #fff;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+
+  .item-content {
+    flex: 1;
+    min-width: 0;
+  }
+  .item-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+  .item-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.82rem;
+    color: var(--link);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .item-link:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+  }
+  .item-link svg {
+    width: 11px; height: 11px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    flex-shrink: 0;
+  }
+
+  /* ── Practical tag ── */
+  .practical-tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-left: 6px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--link); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── Responsive ── */
+  @media (max-width: 480px) {
+    header { padding: 2rem 1rem 1.75rem; }
+    main { padding: 1.25rem 0.75rem 3rem; }
+    .checklist-item { padding: 0.875rem 1rem; gap: 12px; }
+    .item-title { font-size: 0.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <span class="badge">EDS Portfolio</span>
+    <h1>Yashpunekar – EDS</h1>
+    <p>Embedded &amp; Digital Systems submission — all practicals &amp; resources in one place.</p>
+    <div class="progress-row">
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill"></div>
+      </div>
+      <span class="progress-label">9 / 9 completed ✓</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- Deliverables -->
+  <p class="section-heading">Deliverables &amp; Resources</p>
+  <div class="checklist">
+
+    <div class="checklist-item">
+      <div class="check-icon">
+        <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg>
+      </div>
+      <div class="item-content">
+        <div class="item-title">Video Demonstration</div>
+        <a class="item-link" href="#" target="_blank" rel="noopener">
+          Watch the video here
+          <svg viewBox="0 0 12 12"><path d="M9 3H3v6M9 3L4 8"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon">
+        <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg>
+      </div>
+      <div class="item-content">
+        <div class="item-title">CodeTantra Completion Link</div>
+        <a class="item-link" href="#" target="_blank" rel="noopener">
+          View my CodeTantra completion
+          <svg viewBox="0 0 12 12"><path d="M9 3H3v6M9 3L4 8"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon">
+        <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg>
+      </div>
+      <div class="item-content">
+        <div class="item-title">Download Cisco Certificate</div>
+        <a class="item-link" href="#" target="_blank" rel="noopener">
+          Download Certificate
+          <svg viewBox="0 0 12 12"><path d="M6 2v6M3 6l3 3 3-3M2 10h8"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Practicals -->
+  <p class="section-heading">Practicals</p>
+  <div class="checklist">
+
+    <div class="checklist-item">
+      <div class="check-icon">
+        <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg>
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          Practical 1 <span class="practical-tag">P1</span>
+        </div>
+        <a class="item-link" href="#" target="_blank" rel="noopener">
+          practical 1
+          <svg viewBox="0 0 12 12"><path d="M9 3H3v6M9 3L4 8"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon">
+        <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg>
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          Practical 2 <span class="practical-tag">P2</span>
+        </div>
+        <a class="item-link" href="#" target="_blank" rel="noopener">
+          practical 2
+          <svg viewBox="0 0 12 12"><path d="M9 3H3v6M9 3L4 8"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon">
+        <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg>
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          Practical 3 <span class="practical-tag">P3</span>
+        </div>
+        <a class="item-link" href="#" target="_blank" rel="noopener">
+          practical 3
+          <svg viewBox="0 0 12 12"><path d="M9 3H3v6M9 3L4 8"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon">
+        <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg>
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          Practical 4 <span class="practical-tag">P4</span>
+        </div>
+        <a class="item-link" href="#" target="_blank" rel="noopener">
+          practical 4
+          <svg viewBox="0 0 12 12"><path d="M9 3H3v6M9 3L4 8"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check-icon">
+        <svg viewBox="0 0 14 14"><polyline points="2,7 5.5,10.5 12,3"/></svg>
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          Practical 5 <span class="practical-tag">P5</span>
+        </div>
+        <a class="item-link" href="#" target="_blank" rel="noopener">
+          practical 5
+          <svg viewBox="0 0 12 12"><path d="M9 3H3v6M9 3L4 8"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <p>Built by <a href="https://github.com/Yashpunekar-2611/yashpunekar--EDS" target="_blank">Yashpunekar</a> · EDS Portfolio &copy; 2025</p>
+</footer>
+
+</body>
+</html>
